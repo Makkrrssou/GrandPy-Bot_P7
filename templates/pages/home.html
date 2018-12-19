@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='bootstrap.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+
+<body id="landing-page">
+	<div class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class ="navbar-header">
+				<a class="navbar-brand" href="#">GrandPy-Bot Project</a>
+			</div>
+				<ul class="nav navbar-nav">
+					<li class="nav-item"><a href="{{url_for('home')}}">Home</a></li>
+					<li class="nav-item"><a href="{{url_for('get_data')}}">GrandPy-Bot</a></li>
+
+				</ul>
+			
+		</div>
+			
+	</div>
+
+	<div class="jumbotron">
+			<h1 class="display-4">Bienvenue à toi!</h1>
+			<p class="lead">Pour poser des questions à GrandPy-Bot c'est <a class="btn btn-primary btn-lg" role="button" href="{{url_for('get_data')}}">ici</a></p>
+	</div>		
+
+
+	</div>
+</body>
+</html>
