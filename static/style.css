@@ -29,11 +29,12 @@
 	background: #05728f;
 	color: white;
 	font-size:14px;
-	width:25%;
+	width:auto;
 	margin-left: 650px;
 	border-radius: 5px;
 	text-align: center;
-	height: 25px
+	height: auto;
+	
 }
 /*.server-side{
 
@@ -96,4 +97,9 @@ img{
 #message{
 	padding: 35px;
 	height: 450px;
+}
+.col-lg-12{
+	margin-left: 95px;
+	width:103%;
+	border-radius: 5px;
 }

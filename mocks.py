@@ -1,4 +1,5 @@
 import requests
+import json
 
 
 class Search():
@@ -8,11 +9,17 @@ class Search():
     def get_article(self, keyword):
 
         self.url1="https://fr.wikipedia.org/w/api.php?action=query&list=search&srsearch={}&utf8&format=json"
-        self.url2='https://fr.wikipedia.org/w/api.php?action=query&titles={}&prop=extracts&exsentences=3&format=json&explaintext'
+        self.url2='https://fr.wikipedia.org/w/api.php?action=query&titles={}&prop=extracts&exsentences=2&format=json&explaintext'
 
 
         '''recherche de tous les articles similaires au mot-clef saisi au format json'''
         self.r=requests.get(self.url1.format(keyword)).json()
+        print(self.r)
+        print(type(self.r))
+        test=json.dumps(self.r, separators=(',', ':'))
+        print(type(test))
+
+
 
         '''Extraction du titre du premier article'''
 
@@ -24,7 +31,9 @@ class Search():
 
 
         for art in self.article['query']['pages'].keys():
-            self.pageid=art
+             self.pageid=art
+        
+        
 
         self.text = self.article['query']['pages'][self.pageid]['extract']
 
