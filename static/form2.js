@@ -13,7 +13,7 @@ $("form").submit(function(event){
 		a:extractVal
 	},function(data){
 
-		$("#message").append('<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q='+extractVal+'&key=AIzaSyD4oIexrzcN8LaIRaxszGHPMgRgPLCPxNE" allowfullscreen></iframe> ');
+		$("#message").append('<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q='+extractVal+'&key={}" allowfullscreen></iframe> ');
 		$("#message").append('<div class="server-side">'+data.result+'</div>');
 		$("#chat_zone").scrollTop($('#chat_zone').prop("scrollHeight"));
 	})
