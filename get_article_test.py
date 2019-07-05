@@ -1,14 +1,24 @@
 from mocks import * 
-import requests
+import urllib
 from io import BytesIO
 
 import json
 
-def test_http_return(monkeypatch):
-	results="Paris [pa.ʁi]  est la capitale de la France. Elle se situe au cœur d'un vaste bassin sédimentaire aux sols fertiles et au climat tempéré, le bassin parisien, sur une boucle de la Seine, entre les confluents de celle-ci avec la Marne et l'Oise. Ses habitants s’appellent les Parisiens."
+def test_http_return_title(monkeypatch):
+	results={
+			'batchcomplete': '', 
+			'continue': {
+					'sroffset': 10, 'continue': '-||'}, 
+			'query': {
+					'searchinfo': {
+								'totalhits': 366886}
+					}
+			}
+			 
 
 	def mockreturn(request):
-		return json.dumps(results)
+		return BytesIO(json.dumps(results).encode())
 
-	monkeypatch.setattr(requests,'get',mockreturn)
-	assert Search.get_article('Paris') is not None
+	monkeypatch.setattr(urllib.request,'urlopen',mockreturn)
+	assert Search().get_title_article('Paris') == results
+

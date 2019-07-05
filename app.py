@@ -1,5 +1,5 @@
 from flask import Flask,render_template,request,jsonify
-from mocks import Search
+from mocks import Search,Extract
 app = Flask(__name__)
 
 
@@ -12,10 +12,12 @@ def home():
 @app.route('/processing')
 def get_information():
 	
-	extr=request.args.get('a','Pas de réponse reçue', type=str)
-	aws=Search.get_article(extr)
+	client_answer=request.args.get('a','Pas de réponse reçue', type=str)
+	title=Search().get_title_article(client_answer)
+	article=Search().get_article(**title)
+	extract=Extract().extract_article(**article)
 
-	return jsonify(result=aws)
+	return jsonify(result=extract)
 
 @app.route('/formulaire')
 def get_data():
