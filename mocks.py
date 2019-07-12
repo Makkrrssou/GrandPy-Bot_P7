@@ -1,4 +1,4 @@
-from urllib import request
+
 import requests
 import json
 import stop_words as s 
@@ -29,9 +29,6 @@ class Search():
 
         return self.article
 
-
-
-class Extract():
 
     @classmethod
     def extract_title(self,**foo):
@@ -70,10 +67,34 @@ class Parse():
 
 class Location():
 
-    def get_address(self,keyword):
+    @classmethod
+    def get_place(self,keyword):
 
         self.url_place='https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={}&inputtype=textquery&fields=formatted_address,name,geometry&key=AIzaSyD4oIexrzcN8LaIRaxszGHPMgRgPLCPxNE'
-        self.place=request.urlopen(self.url_place.format(keyword))
+        self.place=requests.get(self.url_place.format(keyword)).json()
+
+        return self.place
+
+    @classmethod
+    def extract_address(self,**place):
+
+        self.address=place['candidates'][0]['formatted_address']
+
+        return self.address 
+
+    def extract_coords(self,**place):
+
+        self.coords=dict()
+        lat=place['candidates'][0]['geometry']['location']['lat']
+        lng=place['candidates'][0]['geometry']['location']['lng']
+        self.coords['lat']=lat
+        self.coords['lng']=lng
+
+        return self.coords
+
+
+
+
 
 
 
