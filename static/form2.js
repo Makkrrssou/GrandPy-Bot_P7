@@ -17,8 +17,6 @@ $("form").submit(function(event){
 		var dic_result=results.split(';');
 		$("#message").append('<div class="server-side">'+dic_result[1]+'</div>');
 		$("#message").append('<div class="server-side">'+dic_result[0]+'</div>');
-		$("#message").append('<div class="server-side">'+dic_result[2]+'</div>');
-		$("#message").append('<div class="server-side">'+dic_result[3]+'</div>');
 		$("#chat_zone").scrollTop($('#chat_zone').prop("scrollHeight"));
 	})
 	.done(function(){
@@ -29,7 +27,18 @@ $("form").submit(function(event){
 
 	});
 
-	return false;
+	
+	
+	var map;
+	$("#message").append('<div id=map></div>');
+	function initMap() {
+		map = new google.maps.Map(document.getElementById('map'), {
+		center: {lat: -34.397, lng: 150.644},
+		zoom: 8
+		});
+	}
+
+	return false;	
 
 });
 
